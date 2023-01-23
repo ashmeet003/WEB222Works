@@ -8,9 +8,9 @@
  *
  * Please update the following with your information:
  *
- *      Name: <YOUR_NAME>
- *      Student ID: <YOUR_STUDENT_ID>
- *      Date: <SUBMISSION_DATE>
+ *      Name: Ashmeet Kaur
+ *      Student ID: 122421217
+ *      Date: January 22, 2023
  *
  * Please see all unit tests in the files problem-00.test.js, problem-01.test.js, etc.
  */
@@ -104,7 +104,7 @@
  ******************************************************************************/
 
 function greeting(name) {
-  return `Hello ${name}`;
+  return `Hello ${name}!`;
 }
 
 /*******************************************************************************
@@ -133,7 +133,16 @@ function greeting(name) {
  ******************************************************************************/
 
 function toCamelCase(name, uppercase) {
-  // Replace this comment with your code...
+  var regex = /_+/;
+  if (regex.test(name)) {
+    var words = name.split(regex);
+    for (var i = 1; i < words.length; i++) {
+      words[i] = words[i][0].toUpperCase() + words[i].slice(1);
+    }
+    name = words.join('');
+  }
+  if (uppercase === true) name = name[0].toUpperCase() + name.slice(1);
+  return name;
 }
 
 /*******************************************************************************
@@ -184,7 +193,17 @@ function toCamelCase(name, uppercase) {
  ******************************************************************************/
 
 function createMetaTag(name, content) {
-  // Replace this comment with your code...
+  name = name.trim();
+  content = content.trim();
+  var optionalQuote = '"';
+  var meta;
+  var metaContext = '<meta name=';
+  var contentContext = ' content=';
+  if (name.split(/[ \t\n]/).length > 1) meta = metaContext + '"' + name + '"';
+  else meta = metaContext + name;
+  if (content.split(/[ \t\n]/).length > 1) meta = meta + contentContext + '"' + content + '">';
+  else meta = meta + contentContext + '>';
+  return meta;
 }
 
 /*******************************************************************************
@@ -235,7 +254,13 @@ function createMetaTag(name, content) {
  ******************************************************************************/
 
 function parseDateString(value) {
-  // Replace this comment with your code...
+  value.trim();
+  var regex = /-/;
+  var warning = 0;
+  if (regex.test(value)) {
+    var dateArray = value.split(regex);
+    for (var i = 0; i < dateArray.length; i++) {}
+  } else throw 'invalid date string, expected a `YYYY-MM-DD` or `DD-MM-YYYY` formatted string';
 }
 
 /*******************************************************************************

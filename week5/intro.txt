@@ -1,0 +1,45 @@
+#HTML basic structure:
+    <!-- ..this is comment..  -->
+    <!doctype html>
+    <html>
+        <head>
+            <meta charset="utf-8">
+            <title>My Web Page</title>
+        </head>
+        <body>
+        <h1> Hello </h1>
+        <!-- ..this is comment..  -->
+        </body>
+    </html>
+
+#button tag:
+    <button> click Me </button>
+
+#metadata:
+    <link>
+    <meta>
+    <title>
+
+#content sections
+    <header>
+    <nav>
+    <main>
+    <h1>,<h2>...
+    <footer>
+
+#containers: generic containers, inline texts
+    =>generic/Text content:
+        <div>
+        <ol>,<ul>
+        <li>
+        <p>
+        <blockquote>
+    =>inline:
+        <a>
+        <code>
+        <em>
+        <span>
+
+ //a tag like <br /> is self closing tag; image tag is also self closing tag: <img \>
+#Media tags:
+    <img src=""/> : address can be local or web address

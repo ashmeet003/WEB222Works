@@ -8,12 +8,14 @@
  *
  * Please update the following with your information:
  *
- *      Name: <YOUR_NAME>
- *      Student ID: <YOUR_STUDENT_ID>
- *      Date: <SUBMISSION_DATE>
+ *      Name: Ashmeet Kaur
+ *      Student ID: 122421217
+ *      Date: February 7, 2023
  *
  * Please see all unit tests in the files problem-01.test.js, problem-02.test.js, etc.
  */
+
+const { total_results } = require('./data');
 
 /*******************************************************************************
  * Problem 0: learn how to work with the cases data.
@@ -72,7 +74,7 @@
  ******************************************************************************/
 function getTotalResults(data) {
   // TODO: fix this code so it gets and returns the `total_results` property from observation data
-  return data;
+  return data.total_results;
 }
 
 /*******************************************************************************
@@ -95,7 +97,18 @@ function getTotalResults(data) {
  * Your function shouldn't return anything, just call console.log()
  ******************************************************************************/
 function observationSummary(data) {
-  // TODO
+  data = data.results;
+  for (var i = 0; i < data.length; i++) {
+    console.log(
+      'ID-' +
+        data[i].id +
+        ' "' +
+        data[i].species_guess +
+        '" (Date: ' +
+        data[i].observed_on_details.date +
+        ')'
+    );
+  }
 }
 
 /*******************************************************************************
@@ -107,7 +120,12 @@ function observationSummary(data) {
  * See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach
  ******************************************************************************/
 function observationSummary2(data) {
-  // TODO
+  data = data.results;
+  data.forEach((e) => {
+    console.log(
+      'ID-' + e.id + ' "' + e.species_guess + '" (Date: ' + e.observed_on_details.date + ')'
+    );
+  });
 }
 
 /*******************************************************************************
@@ -150,7 +168,20 @@ function observationSummary2(data) {
  * Your function should return the newly created Array.
  ******************************************************************************/
 function observationsByGeoPrivacy(data, geoPrivacy) {
-  // TODO
+  if (typeof geoPrivacy === 'string') geoPrivacy = geoPrivacy.toLowerCase();
+  if (
+    geoPrivacy === 'open' ||
+    geoPrivacy === 'obscured' ||
+    geoPrivacy === 'private' ||
+    geoPrivacy === null
+  ) {
+    var newArray = [];
+    for (var elem of data.results) {
+      if (elem.geoprivacy === geoPrivacy) newArray.push(elem);
+    }
+    return newArray;
+  }
+  throw new Error('Error');
 }
 
 /*******************************************************************************
@@ -175,7 +206,9 @@ function observationsByGeoPrivacy(data, geoPrivacy) {
  * }
  ******************************************************************************/
 function transformObservation(original) {
-  // TODO
+  var newObj = {};
+  newObj.id = original.id;
+  newObj.speciesGuess = original.species_guess;
 }
 
 /*******************************************************************************

@@ -1,0 +1,28 @@
+#About Tables:
+    <table>
+    <caption>
+    <thead>
+    <tbody>
+    <tfoot>
+
+<table>
+    <thead>
+        <tr>                         //basically three headers in one row
+            <th>...</th>
+            <th>...</th>
+            <th>...</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>                         //data for each row, under each header
+            <td>...<\td>             //td= each cell
+            <td>...<\td>
+            <td>...<\td>
+        <\tr>
+        <tr>
+            <td>...<\td>
+            <td>...<\td>
+            <td>...<\td>
+        <\tr>
+    <\tbody>
+<\table>

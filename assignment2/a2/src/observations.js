@@ -209,6 +209,17 @@ function transformObservation(original) {
   var newObj = {};
   newObj.id = original.id;
   newObj.speciesGuess = original.species_guess;
+  if (original.quality_grade === 'research') newObj.isResearchQuality = true;
+  else newObj.isResearchQuality = false;
+  newObj.geoCoords = original.location.split(',').reverse();
+  newObj.geoCoords = newObj.geoCoords.map((str) => {
+    return Number(str);
+  });
+  newObj.photos = [];
+  original.photos.forEach((e) => newObj.photos.push(e.url));
+  newObj.photosCount = newObj.photos.length;
+  newObj.user = '@' + original.user.login;
+  return newObj;
 }
 
 /*******************************************************************************

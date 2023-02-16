@@ -10,12 +10,10 @@
  *
  *      Name: Ashmeet Kaur
  *      Student ID: 122421217
- *      Date: February 7, 2023
+ *      Date: February 15, 2023
  *
  * Please see all unit tests in the files problem-01.test.js, problem-02.test.js, etc.
  */
-
-const { total_results } = require('./data');
 
 /*******************************************************************************
  * Problem 0: learn how to work with the cases data.
@@ -211,14 +209,14 @@ function transformObservation(original) {
   newObj.speciesGuess = original.species_guess;
   if (original.quality_grade === 'research') newObj.isResearchQuality = true;
   else newObj.isResearchQuality = false;
-  newObj.geoCoords = original.location.split(',').reverse();
-  newObj.geoCoords = newObj.geoCoords.map((str) => {
+  newObj.coords = original.location.split(',').reverse();
+  newObj.coords = newObj.coords.map((str) => {
     return Number(str);
   });
   newObj.photos = [];
   original.photos.forEach((e) => newObj.photos.push(e.url));
   newObj.photosCount = newObj.photos.length;
-  newObj.user = '@' + original.user.login;
+  newObj.user = '@' + original.user.login_exact;
   return newObj;
 }
 
@@ -238,7 +236,11 @@ function transformObservation(original) {
  *  - return the new Array containing all the transformed Objects
  ******************************************************************************/
 function transformObservations(data) {
-  // TODO
+  var arr = [];
+  data.results.forEach((e) => {
+    arr.push(transformObservation(e));
+  });
+  return arr;
 }
 
 /*******************************************************************************
@@ -255,7 +257,8 @@ function transformObservations(data) {
  *  - return the Array created by the .map() method
  ******************************************************************************/
 function transformObservations2(data) {
-  // TODO
+  var arr = data.results.map((e) => transformObservation(e));
+  return arr;
 }
 
 /*******************************************************************************
@@ -289,7 +292,17 @@ function transformObservations2(data) {
  *  - use the .find() method to locate items by id, see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find
  ******************************************************************************/
 function getObservationsById(data, ...ids) {
-  // TODO
+  var arr = [];
+  if (ids.length === 1) {
+    var temp = data.results.find((e) => e.id === ids[0]);
+    return temp ? temp : null;
+  }
+  ids.forEach((item) => {
+    let tempValue = data.results.find((value) => value.id === item);
+    if (tempValue !== undefined) arr.push(tempValue);
+  });
+  if (arr.length >= 1) return arr;
+  return arr;
 }
 
 /*******************************************************************************
@@ -325,7 +338,20 @@ function getObservationsById(data, ...ids) {
  ******************************************************************************/
 
 function getObservationsByPositionalAccuracy(data, options = {}) {
-  // TODO
+  if (Object.keys(options).length === 0 || !options) return data.results;
+  return data.results.filter((value) => {
+    return options.eq
+      ? value.positional_accuracy === options.eq
+      : options.eq && options.lt && options.getTotalResults
+      ? value.positional_accuracy === options.eq
+      : options.lt && options.gt
+      ? value.positional_accuracy >= options.gt && value.positional_accuracy <= options.lt
+      : options.gt
+      ? value.positional_accuracy >= options.gt
+      : options.lt
+      ? value.positional_accuracy <= options.lt
+      : false;
+  });
 }
 
 /*******************************************************************************
@@ -375,7 +401,15 @@ function getObservationsByPositionalAccuracy(data, options = {}) {
  * Your function should return an Array of these new Objects:
  ******************************************************************************/
 function getPlaces(data) {
-  // TODO
+  var obj = {},
+    arr = [];
+  data.results.forEach((e) => {
+    e.place_ids.forEach((id) => {
+      obj[id] = `https://www.inaturalist.org/observations?place_id=${id}`;
+    });
+    arr.push(obj);
+  });
+  return arr;
 }
 
 /*******************************************************************************
@@ -436,7 +470,32 @@ function getPlaces(data) {
  * }
  ******************************************************************************/
 function getUserStats(data) {
-  // TODO
+  let obj = {};
+  var count = 0,
+    observations = 0,
+    journals = 0,
+    species = 0;
+  data.results.forEach((item) => {
+    if (item.user) {
+      var user = item.user;
+      count++;
+      if (user.observations_count) observations += user.observations_count;
+      if (user.journal_posts_count) journals += user.journal_posts_count;
+      if (user.species_count) species += user.species_count;
+    }
+  });
+  obj.count = count;
+  obj.totals = {
+    observations: observations,
+    journals: journals,
+    species: species
+  };
+  obj.averages = {
+    observations: observations / count,
+    journals: journals / count,
+    species: species / count
+  };
+  return obj;
 }
 
 /**
@@ -455,7 +514,16 @@ function getUserStats(data) {
  * return the Array of time zones.
  */
 function extractTimeZones(data) {
-  // TODO
+  var arr = [];
+  var uniqArr = [];
+  data.results.forEach((e) => {
+    arr.push(e.created_time_zone);
+    arr.push(e.observed_time_zone);
+  });
+  arr.forEach((e) => {
+    if (!uniqArr.includes(e)) uniqArr.push(e);
+  });
+  return uniqArr;
 }
 
 /**
@@ -473,7 +541,12 @@ function extractTimeZones(data) {
  */
 
 function extractTimeZones2(data) {
-  // TODO
+  var set = new Set();
+  data.results.forEach((e) => {
+    set.add(e.created_time_zone);
+    set.add(e.observed_time_zone);
+  });
+  return Array.from(set);
 }
 
 // Our unit test files need to access the functions we defined

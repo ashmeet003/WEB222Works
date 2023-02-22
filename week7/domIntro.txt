@@ -1,0 +1,22 @@
+Every web application has dom tree
+Dom tree = tree hierarchy of web page
+To access id:
+if you have id as 'test'
+    document.getElementById('test')
+
+    Another method:query selector
+        <body id="menu"></body>
+        or for class"format"
+        document.querySelector('#menu')
+        document.querySelector('.format')
+
+to create p element
+var pe=document.createElement('p');
+document.body.appendChild(pe);
+
+var textNode=document.createTextNode('Web222');
+pe.append(textNode);
+
+
+var element=document.querySelector('...')
+element.appendChild(pe)

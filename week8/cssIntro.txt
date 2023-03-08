@@ -1,0 +1,10 @@
+Inline:within html tags
+Internal using style tag
+ To use id: #submit{}
+ To uae class: .submit{}
+
+ Contextual selectors
+ Group Selectors
+ #ffff =pure white
+ #0000 =pure black
+ 

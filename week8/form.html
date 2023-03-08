@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Form</title>
+    <style>
+      .htag {
+        font-weight: bold;
+        color: #0000ff;
+        text-align: center;
+        font-size: 40px;
+        text-decoration: none;
+      }
+      .htag:hover {
+        color: #808080;
+        text-align: center;
+        text-decoration: underline;
+        font-size: 40px;
+      }
+      label {
+        color: rgb(47, 5, 165);
+        font-size: 18px;
+      }
+      input:focus {
+        outline: none;
+        border: 3px solid red;
+      }
+      .submitGo {
+        background-color: green;
+        color: #ffffff;
+        font-size: 20px;
+        border: 3px solid black;
+      }
+      .submitGo:hover {
+        background-color: white;
+        color: green;
+        border: 3px solid black;
+      }
+      div {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <a class="htag" href="https://web222.ca/weeks/week08/">Intro</a>
+    <form>
+      <label for="name">Name:</label><br />
+      <input type="text" id="name" name="name" /><br />
+      <label for="number">Phone Number:</label><br />
+      <input type="text" id="number" name="number" /><br /><br />
+      <div><button class="submitGo">Go</button></div>
+    </form>
+  </body>
+</html>

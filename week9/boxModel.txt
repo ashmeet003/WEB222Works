@@ -1,0 +1,36 @@
+Margin
+border
+Padding
+                       ▲
+                       ▲
+             ᵐ         b        ᵐ
+                   ᵖ   ↑   ᵖ
+            ◄◄◄ b<--- txt --->b ►►►
+                   ᵖ   ↓   ᵖ
+                       b
+             ᵐ         ▼        ᵐ
+                       ▼
+padding: top, right, bottom, left
+       : 10px 30px 10px 30px;
+       : 10px 30px;
+       :top-bottom right-left;
+       :30px (if all are 30px)
+
+border: width styling color
+      : 5px solid red;
+border-left-color: blue //to overwrite any aspect
+
+margin: top, right, bottom, left
+      : 10px 30px 20px 5px
+      : 10px 30px
+      : 10px;
+      : auto //would keep as it to system: 10px auto
+      //also used to centre an element: give same spacing all over, so set margin to auto
+
+display: none
+       : visibilty;
+
+Flex box:
+display: Flex
+to display horizontally: flex-direction: row;  justify-contents (for same spacing: center)
+to display vertically: flex-direction: column; align-items (for same spacing: center)

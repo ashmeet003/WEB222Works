@@ -30,7 +30,7 @@ margin: top, right, bottom, left
 display: none
        : visibilty;
 
-Flex box:
+#Flex box:
 display: Flex
 to display horizontally: flex-direction: row;  justify-contents (for same spacing: center)
 to display vertically: flex-direction: column; align-items (for same spacing: center)

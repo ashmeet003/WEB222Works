@@ -1,0 +1,24 @@
+<form></form>:
+
+input:
+    button
+    checkbox
+    checkbox
+    radiobutton
+type:
+    text
+    number
+    buttonpassword
+    email
+
+=>label:input
+=>Name:_______
+<label for=""></label>
+<input name="" id=""></input>
+'for' is for label and should match 'name' and 'id' of input
+#button has 'onclick' too
+
+<form>: attribute:
+action: "/submit": submitted to backend
+        "/search"; used to search
+method: "post" : form submits it, creates a object> send it to json and submit

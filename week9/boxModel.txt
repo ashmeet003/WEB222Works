@@ -34,3 +34,17 @@ display: none
 display: Flex
 to display horizontally: flex-direction: row;  justify-contents (for same spacing: center)
 to display vertically: flex-direction: column; align-items (for same spacing: center)
+also, column/row-reverse to reverse flex-direction
+
+Position-property:
+-static property: default styling
+-relative: gives offset; goes with he flow but allow (kind-of) margins (top, bottom, right, left)
+-absolute: separate from normal flow: goes on top
+-fixed: fixed to view of page
+-sticky: sticks to viewport
+to get something on top like green pop-up on grey page
+green: absolutegrey: relativeanother way: z-Index
+
+Z-Index: creates layer on page; assuming everything on page has index0,
+ so to add on top of it add number to it:  green on top of grey would have index=1
+

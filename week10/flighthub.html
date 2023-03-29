@@ -33,10 +33,25 @@
         cursor: pointer;
         border: 1px solid #dcdcdc;
       }
+
+      #searchButton,
+      #searchButton:enabled {
+        width: 150px;
+        height: 30px;
+        background-color: orangered;
+        color: white;
+        border: 3px solid orangered;
+      }
+      #searchButton:disabled,
+      #searchButton:hover {
+        background-color: white;
+        color: orangered;
+        border: 3px solid orangered;
+      }
     </style>
   </head>
   <body>
-    <form>
+    <form class="classForm" onsubmit="myFunction()">
       <h1>FLIGHTS</h1>
       <div class="menu">
         <button>Round Trip</button>
@@ -50,6 +65,7 @@
           placeholder="Departing From"
           name="departPlace"
           id="departPlace"
+          onkeyup="myFunction()"
         />
       </div>
       <div class="detail">
@@ -59,6 +75,7 @@
           placeholder="Going to"
           name="destination"
           id="destination"
+          onkeyup="myFunction()"
         />
       </div>
       <div class="detail">
@@ -68,6 +85,7 @@
           placeholder="Departure Date"
           name="departDate"
           id="departDate"
+          onkeyup="myFunction()"
         />
         <label for="returnDate">Return</label>
         <input
@@ -75,6 +93,7 @@
           placeholder="Return Date"
           name="returnDate"
           id="returnDate"
+          onkeyup="myFunction()"
         />
       </div>
 
@@ -105,9 +124,24 @@
         <input type="checkbox" name="airports" id="airports" />
         <label for="airports">Add Nearby Airports</label>
       </div>
-      <button>Search Flights</button><br />
+
+      <button id="searchButton" type="submit" disabled>Submit</button>
+      <br />
       <input type="checkbox" name="options" id="options" />
       <label for="options">Include hotel options</label>
     </form>
+    <script>
+      function myFunction() {
+        //e.preventDefault();
+        var origin = document.getElementById("departPlace").value.trim;
+        var to = document.getElementById("destination").value.trim;
+        var dDate = document.getElementById("departDate").value.trim;
+        var aDate = document.getElementById("returnDate").value.trim;
+        //var isDisabled = origin.value.trim;
+        var check = document.getElementById("searchButton");
+        check.disabled = !to;
+        console.log("submitting info");
+      }
+    </script>
   </body>
 </html>

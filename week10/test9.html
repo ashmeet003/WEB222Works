@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>test9</title>
+    <style>
+      form {
+        text-align: center;
+        border: 1px solid black;
+        padding: 20px;
+        background-color: white;
+      }
+      h1 {
+        color: black;
+        font-size: 20px;
+        text-align: left;
+      }
+      h2 {
+        color: black;
+        font-size: 14px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+      }
+      label,
+      input {
+        color: #453c3c;
+      }
+      label {
+        font-size: 18px;
+      }
+      input {
+        font-size: 14px;
+      }
+      input:active {
+        padding-left: 5px;
+      }
+      #link {
+        font-size: 11px;
+        padding-top: 10px;
+        padding-bottom: 50px;
+        color: #243b75;
+        text-decoration: none;
+      }
+      #link:hover {
+        color: #5572bd;
+        text-decoration: underline;
+      }
+      button {
+        border: 2px solid #34ebb1;
+
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+      #button {
+        color: #34ebb1;
+        font-size: 16px;
+      }
+      #button.a:hover {
+        color: white;
+      }
+      button:hover {
+        background-color: #34ebb1;
+      }
+    </style>
+  </head>
+  <body>
+    <form>
+      <h1>Login</h1>
+      <h2>You are not logged in.</h2>
+      <label for="email">Email</label>
+      <input
+        id="email"
+        name="email"
+        type="email"
+        placeholder="Enter your email"
+      />
+      <br />
+      <label for="password">Password</label>
+      <input
+        id="password"
+        name="password"
+        type="password"
+        placeholder="Password"
+      />
+      <br />
+      <a id="link" +href="https://my.senecacollege.ca/"
+        >Forgot/reset password</a
+      >
+      <br /><button>
+        <a id="button" href="https://students.senecacollege.ca/">login</a>
+      </button>
+    </form>
+  </body>
+</html>

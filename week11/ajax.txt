@@ -1,0 +1,15 @@
+  || ===>HTTP request===> ||
+  || <=====response<===== ||
+client                  server
+
+Asynchronous request=> we have t wait for response, don't know how long it can take to process(multithread, simultaneous)
+Ajax (=Asynchronous, Javascript, XML) is one of the first to be used for asynchronous requests
+
+#get request , asynchronous (ajax request)
+var xhr= new XMLHttpRequest(); //ajax object
+xhr.onload=function(){
+    var data=this.responseText;
+    console.log('Data arrived',data);
+};
+xhr.open("GET","http://google.com"); //create request, url is mandatory field for any request
+xhr.send(); //send request and wait for reply

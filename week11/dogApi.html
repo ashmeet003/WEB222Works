@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dog API</title>
+  </head>
+  <body>
+    <form id="dogs-form" action="#">
+      <select id="breeds" name="breeds"></select>
+      <input type="image-count" min="1" max="100" value="5" id="image-count" />
+      <input type="button" id="btn-load" value="Show me dogs!" id="button" />
+    </form>
+    <main>
+      <h2 id="breed-name"></h2>
+      <div id="images-container">
+        <p id="error-msg"></p>
+      </div>
+    </main>
+
+    <script>
+      window.onload = function () {
+        loadDogBreeds();
+      };
+      function loadDogBreeds() {
+        // See https://dog.ceo/dog-api/documentation/
+        var url = "https://dog.ceo/api/breeds/list/all";
+        var xhr = new XMLHttpRequest();
+        //var breedList;
+        xhr.onload = function () {
+          var response = JSON.parse(this.responseText);
+          var breedList = extractBreedList(response);
+          updateBreedList(breedList);
+        };
+        xhr.open("GET", url);
+        xhr.send();
+      }
+      function extractBreedList(response) {
+        return Object.keys(response.message);
+      }
+      function updateBreedList(breedList) {
+        var select = document.querySelector("#breeds");
+        var btnLoad = document.querySelector("#btn-load");
+
+        function createBreedOption(name) {
+          var option = document.createElement("option");
+          option.value = name;
+          option.innerHTML = name;
+
+          return option;
+        }
+
+        breedList.forEach(function (breed) {
+          var breedOption = createBreedOption(breed);
+          select.appendChild(breedOption);
+        });
+
+        btnLoad.onclick = function (e) {
+          var breed = select.value;
+          loadBreedImages(breed);
+        };
+      }
+      function loadBreedImages(breed) {
+        // See https://dog.ceo/dog-api/documentation/breed
+        // Use the imageCount and breed variables to create our URL
+        var imageSelect = document.querySelector("#image-count");
+        var imageCount = imageSelect.value;
+        var url = `https://dog.ceo/api/breed/${breed}/images/random/${imageCount}`;
+        var xhr = new XMLHttpRequest();
+
+        xhr.onload = function () {
+          try {
+            var response = JSON.parse(this.responseText);
+            var breedImageList = extractBreedImageList(response);
+            updateBreedImages(breedImageList);
+          } catch (e) {
+            showError("Unable to load dog breeds");
+          }
+        };
+
+        xhr.open("GET", url);
+        xhr.send();
+      }
+      function showError(message) {
+        var err = document.querySelector("#error-msg");
+        err.innerHTML = message;
+        console.log(message);
+      }
+      function extractBreedImageList(response) {
+        if (response.status !== "success") {
+          throw new Error("response wasn't successful");
+        }
+        return response.message;
+      }
+      function updateBreedImages(breedImageList) {
+        var imagesContainer = document.querySelector("#images-container");
+        var breedName = document.getElementById("breed-name");
+        var breedsSelect = document.querySelector("#breeds").value;
+        // breedName.innerHTML = "";
+
+        // Set the name of the Breed in our heading
+        breedName.innerHTML = breedsSelect;
+
+        // Clear the imagesContainer if there is anything there now
+        imagesContainer.innerHTML = "";
+
+        // Loop through the image URLs, and create new <img> elements
+        function createImgElement(url) {
+          var img = document.createElement("img");
+          img.setAttribute("height", 250);
+          img.src = url;
+          return img;
+        }
+
+        breedImageList.forEach(function (url) {
+          var img = createImgElement(url);
+          imagesContainer.appendChild(img);
+        });
+      }
+    </script>
+  </body>
+</html>

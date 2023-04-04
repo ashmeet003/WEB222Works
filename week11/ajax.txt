@@ -13,3 +13,7 @@ xhr.onload=function(){
 };
 xhr.open("GET","http://google.com"); //create request, url is mandatory field for any request
 xhr.send(); //send request and wait for reply
+
+JSON:
+JSON.stringify(object); //changes object to json
+JSON.parse(json);  //changes json to object 

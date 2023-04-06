@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FINAL TEST</title>
+    <style>
+      body {
+        text-align: center;
+        align-items: center;
+      }
+      form {
+        text-align: center;
+        border: 3px solid black;
+        width: 500px;
+      }
+      button {
+        border: 2px solid black;
+        background-color: white;
+        color: black;
+        text-transform: uppercase;
+      }
+      button:hover {
+        background-color: black;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <form>
+      <h1>Create a user</h1>
+      <label for="user">User</label>
+      <input id="user" name="user" type="text" />
+      <br /><br />
+      <label for="name">Name</label>
+      <input id="name" name="name" type="text" />
+      <br /><br />
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" />
+      <br /><br />
+      <button type="submit" onclick="myFunction()">submit</button>
+    </form>
+    <script>
+      /* function myFunction() {
+        var user = {
+          user: document.getElementById("user").value,
+          name: document.getElementById("name").value,
+          password: document.getElementById("password").value,
+        };
+        console.log(user);
+        window.location.href = "https://en.wikipedia.org/wiki/API";
+      } */
+      const form = document.querySelector("form");
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const user = {
+          user: form.elements.user.value,
+          name: form.elements.name.value,
+          password: form.elements.password.value,
+        };
+        console.log(user);
+        window.location.href = "https://en.wikipedia.org/wiki/API";
+      });
+    </script>
+  </body>
+</html>

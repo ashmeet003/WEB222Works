@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Z-Index</title>
+    <style>
+      body {
+        text-align: center;
+      }
+      .redContainer {
+        background-color: red;
+        width: 200px;
+        height: 200px;
+        position: absolute;
+        justify-content: center;
+        text-align: center;
+        z-index: 0;
+      }
+      .greenContainer {
+        background-color: green;
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        z-index: 1;
+      }
+      .blueContainer {
+        background-color: blue;
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        z-index: 2;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Z-index</h1>
+    <div class="redContainer"></div>
+    <div class="greenContainer"></div>
+    <div class="blueContainer"></div>
+  </body>
+</html>

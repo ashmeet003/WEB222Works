@@ -68,15 +68,22 @@ document.addEventListener("DOMContentLoaded", function () {
   let reviewForm = document.getElementById("reviewForm");
   reviewForm.addEventListener("submit", (event) => {
     event.preventDefault();
-    let reviewObj = {
-      name: document.getElementById("name").value,
-      date: document.getElementById("date").value,
-      rating: document.getElementById("rating").value,
-      review: document.getElementById("review").value,
-    };
-    window.reviewData.push(reviewObj);
-    document.getElementById("container").innerHTML = "";
-    sendCardsToFunction();
+    const enteredDate = new Date(document.getElementById("date").value);
+    const currentDate = new Date();
+    if (enteredDate.getTime() > currentDate.getTime()) {
+      alert("Please enter correct date: less than or equal to current date");
+    } else {
+      let reviewObj = {
+        name: document.getElementById("name").value,
+        date: document.getElementById("date").value,
+        rating: document.getElementById("rating").value,
+        review: document.getElementById("review").value,
+      };
+      window.reviewData.push(reviewObj);
+      document.getElementById("container").innerHTML = "";
+      sendCardsToFunction();
+    }
+
     //to reset form once its submitted
     document.getElementById("name").value = "";
     document.getElementById("date").value = "";
